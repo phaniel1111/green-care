@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "976253506213",
+    "firebase_url": "https://greencare-db041-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "greencare-db041",
+    "storage_bucket": "greencare-db041.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976253506213:android:69eb971ed6d0c4026bb34c",
+        "android_client_info": {
+          "package_name": "com.example.greencare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976253506213-8ksjklve5ejr9hklok9cvrn5fdqjuvrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjB94E00UHtiPhgakpQ-tyDLKgilZtyVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976253506213-8keehemcijf9seed1f92kep24o8fp2co.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "976253506213-kr3tieet29ebiv2q8jhc1k3tf0tv2v9k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.greencare"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

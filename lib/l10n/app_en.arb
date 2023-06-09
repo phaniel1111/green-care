@@ -1,0 +1,10 @@
+{
+  "signInGoogle": "Sign in with Google",
+  "@loginGoogle": {
+    "description": "Sign in with Google"
+  },
+  "authError": "Authentication failed.",
+  "@authError": {
+    "description": "Authentication error"
+  }
+}
