@@ -74,7 +74,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 Text(
                   'Green Care',
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color:  isDarkMode ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.primary,
+                    color:  Theme.of(context).colorScheme.primary,
                     fontFamily: GoogleFonts.kanit().fontFamily,
                   ),
                 ),

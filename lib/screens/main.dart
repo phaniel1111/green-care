@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'firebase_options.dart';
+import '../firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:greencare/screens/auth.dart';
-import 'package:greencare/screens/home.dart';
+import 'package:greencare/screens/tabs.dart';
 import 'package:greencare/screens/splash.dart';
 
 void main() async{
@@ -36,13 +36,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+          seedColor: Colors.lightGreen,
         ),
         textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme,),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
-        brightness: Brightness.dark,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.green,
           brightness: Brightness.dark,
@@ -58,7 +57,7 @@ class MyApp extends StatelessWidget {
             return const SplashScreen();
           }
           if(snapshot.hasData) {
-            return const HomeScreen();
+            return const Tabs();
           }
           return const AuthScreen();
         },

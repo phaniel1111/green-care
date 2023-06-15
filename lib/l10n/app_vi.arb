@@ -1,4 +1,8 @@
 {
-  "signInGoogle": "Đăng nhập với Google",
-  "authError": "Quá trình xác thực thất bại."
+    "signInGoogle": "Đăng nhập với Google",
+    "authError": "Quá trình xác thực thất bại",
+    "home": "Trang chính",
+    "garden": "Vườn của tôi",
+    "plants": "Tìm cây",
+    "shop": "Cửa hàng"
 }
