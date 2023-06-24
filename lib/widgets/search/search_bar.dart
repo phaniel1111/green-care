@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greencare/models/search_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ItemSearchBar extends StatefulWidget {
   final List<SearchItem> searchData;
@@ -39,7 +40,7 @@ class _ItemSearchBarState extends State<ItemSearchBar> {
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search',
+                hintText: AppLocalizations.of(context)!.plantSearch,
                 prefixIcon: Icon(Icons.search),
                 suffixIcon: _showClearIcon
                     ? IconButton(

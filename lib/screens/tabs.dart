@@ -59,12 +59,6 @@ class _TabsState extends State<Tabs> {
 
     return Scaffold(
       appBar: AppBar(
-        /*title: Text(
-          activePageTitle,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            color:  Theme.of(context).colorScheme.primary,
-          ),
-        ),*/
         actions: [
           IconButton(onPressed: (){
             FirebaseAuth.instance.signOut();

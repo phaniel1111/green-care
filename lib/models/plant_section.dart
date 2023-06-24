@@ -6,43 +6,47 @@ enum PlantSection {
   ornamentalPlants,
 }
 
-Map<PlantSection, String> plantSectionName = {
-  PlantSection.vegetables: 'Vegetables',
-  PlantSection.fruits: 'Fruits',
-  PlantSection.flowers: 'Flowers',
-  PlantSection.herbs: 'Herbs',
-  PlantSection.ornamentalPlants: 'Ornamental Plants',
+Map<String, Map<PlantSection, String>?> kit = {
+  'vi': {
+    PlantSection.vegetables: 'Rau củ',
+    PlantSection.fruits: 'Trái cây',
+    PlantSection.flowers: 'Hoa',
+    PlantSection.herbs: 'Thảo mộc',
+    PlantSection.ornamentalPlants: 'Cây cảnh',
+  },
+  'en': {
+    PlantSection.vegetables: 'Vegetables',
+    PlantSection.fruits: 'Fruits',
+    PlantSection.flowers: 'Flowers',
+    PlantSection.herbs: 'Herbs',
+    PlantSection.ornamentalPlants: 'Ornamental Plants',
+  },
 };
 
-class PlantSectionData {
-  final String section;
-  final String imagePath;
-
-  PlantSectionData({
-    required this.section,
-    required this.imagePath,
-  });
+String getPlantSectionName(String languageCode, PlantSection section) {
+  if (kit.containsKey(languageCode)) {
+    Map<PlantSection, String>? languageKit = kit[languageCode];
+    if (languageKit != null && languageKit.containsKey(section)) {
+      return languageKit[section]!;
+    }
+  }
+  return kit['en']![section]!; // Return English translation as default
 }
 
-List<PlantSectionData> plantSections = [
-  PlantSectionData(
-    section: plantSectionName[PlantSection.vegetables]!,
-    imagePath: 'https://i.pinimg.com/564x/d8/bb/ab/d8bbabc7a7991522601c7af50a1696df.jpg',
-  ),
-  PlantSectionData(
-    section: plantSectionName[PlantSection.fruits]!,
-    imagePath: 'https://i.pinimg.com/564x/d8/bb/ab/d8bbabc7a7991522601c7af50a1696df.jpg',
-  ),
-  PlantSectionData(
-    section: plantSectionName[PlantSection.flowers]!,
-    imagePath: 'https://i.pinimg.com/564x/d8/bb/ab/d8bbabc7a7991522601c7af50a1696df.jpg',
-  ),
-  PlantSectionData(
-    section: plantSectionName[PlantSection.herbs]!,
-    imagePath: 'https://i.pinimg.com/564x/d8/bb/ab/d8bbabc7a7991522601c7af50a1696df.jpg',
-  ),
-  PlantSectionData(
-    section: plantSectionName[PlantSection.ornamentalPlants]!,
-    imagePath: 'https://i.pinimg.com/564x/d8/bb/ab/d8bbabc7a7991522601c7af50a1696df.jpg',
-  ),
-];
+
+PlantSection plantSectionFromString(String section) {
+  switch (section) {
+    case 'vegetables':
+      return PlantSection.vegetables;
+    case 'fruits':
+      return PlantSection.fruits;
+    case 'flowers':
+      return PlantSection.flowers;
+    case 'herbs':
+      return PlantSection.herbs;
+    case 'ornamentalPlants':
+      return PlantSection.ornamentalPlants;
+    default:
+      throw Exception('Invalid plant section');
+  }
+}

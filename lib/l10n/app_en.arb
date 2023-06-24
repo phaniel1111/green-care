@@ -1,8 +1,12 @@
 {
     "signInGoogle": "Sign in with Google",
     "authError": "Authentication failed",
+
     "home": "Home",
     "garden": "My garden",
     "plants": "Find plants",
-    "shop": "Shop"
+    "shop": "Shop",
+
+    "plantError": "Not available",
+    "plantSearch": "Search for plants"
 }

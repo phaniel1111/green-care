@@ -1,8 +1,12 @@
 {
     "signInGoogle": "Đăng nhập với Google",
     "authError": "Quá trình xác thực thất bại",
+
     "home": "Trang chính",
     "garden": "Vườn của tôi",
     "plants": "Tìm cây",
-    "shop": "Cửa hàng"
+    "shop": "Cửa hàng",
+
+    "plantError": "Không khả dụng",
+    "plantSearch": "Tìm cây trồng"
 }

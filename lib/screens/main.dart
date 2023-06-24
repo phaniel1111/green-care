@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Green Care',
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(

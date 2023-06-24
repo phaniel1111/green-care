@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:greencare/models/search_item.dart';
+import 'package:greencare/models/plant_section.dart';
+import 'package:greencare/screens/plant_details.dart';
 
 class SearchList extends StatelessWidget {
   final List<SearchItem> searchResult;
   final bool isDarkMode;
 
   const SearchList({
+    super.key,
     required this.searchResult,
     required this.isDarkMode,
   });
 
   @override
   Widget build(BuildContext context) {
+    String myLocale = Localizations.localeOf(context).toString();
+
     return ListView.builder(
       itemCount: searchResult.length,
       itemBuilder: (context, index) {
@@ -26,7 +31,7 @@ class SearchList extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              '${item.category[0].toUpperCase()}${item.category.substring(1)}',
+              getPlantSectionName(myLocale,plantSectionFromString(item.category)),
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: isDarkMode ? Colors.white : Colors.black,
               ),
@@ -35,7 +40,7 @@ class SearchList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(plant: item),
+                  builder: (context) => PlantDetailScreen(plant: item),
                 ),
               );
             },
@@ -46,26 +51,3 @@ class SearchList extends StatelessWidget {
   }
 }
 
-class DetailScreen extends StatelessWidget {
-  final SearchItem plant;
-
-  const DetailScreen({required this.plant});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(plant.name),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(plant.category),
-            // Display additional details about the plant
-          ],
-        ),
-      ),
-    );
-  }
-}

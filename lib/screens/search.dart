@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:greencare/models/search_item.dart';
 import 'package:greencare/widgets/search/search_bar.dart';
 import 'package:greencare/widgets/search/search_list.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:greencare/utilities/device/error_widget.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -21,8 +23,7 @@ class _SearchScreenState extends State<SearchScreen> {
     } else {
       String lowerCaseInput = input.toLowerCase();
       return searchData.where((item) {
-        return item.category.toLowerCase().contains(lowerCaseInput) ||
-            item.name.toLowerCase().contains(lowerCaseInput);
+        return item.name.toLowerCase().contains(lowerCaseInput);
       }).toList();
     }
   }
@@ -39,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen> {
     } catch (error) {
       setState(() {
         _isLoading = false;
-        _errorMessage = 'Error: $error';
+        _errorMessage = AppLocalizations.of(context)!.plantError;
       });
     }
     setState(() {
@@ -75,7 +76,10 @@ class _SearchScreenState extends State<SearchScreen> {
             child: _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : _errorMessage != null
-                  ? Center(child: Text(_errorMessage!))
+                  ? ErrorDetail(
+                      errorMessage: _errorMessage!,
+                      isDarkMode: isDarkMode,
+                    )
                   :  SearchList(
                       searchResult: _searchResult,
                       isDarkMode: isDarkMode,
