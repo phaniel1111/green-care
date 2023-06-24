@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:greencare/utilities/device/dark_light_setting.dart' as theme_config;
 
 
-class TaskWidget extends StatefulWidget {
-  TaskWidget({super.key, required this.isDarkMode, required this.onSelectedSection});
+class TaskSelector extends StatefulWidget {
+  const TaskSelector({super.key, required this.isDarkMode, required this.onSelectedSection});
   final void Function(bool b) onSelectedSection;
   final bool isDarkMode;
 
   @override
-  State<TaskWidget> createState() => _TaskWidgetState();
+  State<TaskSelector> createState() => _TaskSelectorState();
 }
 
-class _TaskWidgetState extends State<TaskWidget> {
+class _TaskSelectorState extends State<TaskSelector> {
   var selectedSection = true;
 
-  void updateSelectedSection(bool newSelectedSection) {
+  void updateSelectedSection(bool b) {
     setState(() {
-      selectedSection = newSelectedSection;
-      widget.onSelectedSection(newSelectedSection);
+      selectedSection = b;
+      widget.onSelectedSection(b);
     });
   }
 
@@ -37,13 +36,13 @@ class _TaskWidgetState extends State<TaskWidget> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: selectedSection ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSecondary,
+              color: selectedSection ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onPrimary,
             ),
             padding: const EdgeInsets.all(8),
             child: Text(
               'Today',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color:  selectedSection ? theme_config.getTextColor(!widget.isDarkMode) : theme_config.getTextColor(widget.isDarkMode),
+                color:  (widget.isDarkMode ^ selectedSection) ? Colors.white : Colors.black,
               ),
             ),
           ),
@@ -57,13 +56,13 @@ class _TaskWidgetState extends State<TaskWidget> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: !selectedSection ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSecondary,
+              color: !selectedSection ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onPrimary,
             ),
             padding: const EdgeInsets.all(8),
             child: Text(
-              'Next days',
+              'Upcoming',
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color:  !selectedSection ? theme_config.getTextColor(!widget.isDarkMode) : theme_config.getTextColor(widget.isDarkMode),
+                color: (widget.isDarkMode ^ !selectedSection) ? Colors.white : Colors.black,
               ),
             ),
           ),

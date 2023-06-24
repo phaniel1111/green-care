@@ -6,7 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:greencare/app_icons.dart';
 import 'package:greencare/screens/home.dart';
-
+import 'package:greencare/screens/splash.dart';
+import 'package:greencare/screens/search.dart';
 
 class Tabs extends StatefulWidget {
   const Tabs({super.key});
@@ -38,15 +39,16 @@ class _TabsState extends State<Tabs> {
 
     switch (_selectedPageIndex) {
       case 0:
-        activePage = const HomeScreen();
+        //activePage = const HomeScreen();
+        activePage = const SearchScreen();
         activePageTitle = AppLocalizations.of(context)!.home;
         break;
       case 1:
-        activePage = const HomeScreen();
+        activePage = const SplashScreen();
         activePageTitle = AppLocalizations.of(context)!.garden;
         break;
       case 2:
-        activePage = const HomeScreen();
+        activePage = const SearchScreen();
         activePageTitle = AppLocalizations.of(context)!.plants;
         break;
       case 3:

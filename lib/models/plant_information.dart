@@ -1,9 +1,10 @@
 import 'package:greencare/models/plant_section.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Plant {
   String name;
   PlantSection section;
-  Map<String, List<double>> space;
+  Map<String, dynamic> space;
   Map<String, dynamic> environment;
   Map<String, int> action;
   List<int> harvestTime;
@@ -26,6 +27,28 @@ class Plant {
     required this.imageUrl,
     required this.createdDate,
   });
+
+  factory Plant.fromSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    print('Parsing data for plant ${data['name']}');
+    print('Section: ${data['section']}');
+    print('Image URL: ${data['imageUrl']}');
+    return Plant(
+      name: data['name'],
+      section: PlantSection.values.firstWhere(
+            (e) => e.toString() == 'PlantSection.${data['section']}',
+      ),
+      space: Map<String, dynamic>.from(data['space']),
+      environment: Map<String, dynamic>.from(data['environment']),
+      action: Map<String, int>.from(data['action']),
+      harvestTime: List<int>.from(data['harvestTime']),
+      problems: List<String>.from(data['problems']),
+      pests: List<String>.from(data['pests']),
+      toxic: List<String>.from(data['toxic']),
+      imageUrl: List<String>.from(data['imageUrl']),
+      createdDate: DateTime.parse(data['createdDate']),
+    );
+  }
 
   factory Plant.fromJson(Map<String, dynamic> json) {
     return Plant(
