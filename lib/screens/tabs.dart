@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:animations/animations.dart';
 
 import 'package:greencare/app_icons.dart';
 import 'package:greencare/screens/home.dart';
@@ -58,20 +59,42 @@ class _TabsState extends State<Tabs> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AccountScreen(),
-                ),
+          OpenContainer(
+            transitionDuration: const Duration(milliseconds: 700),
+            transitionType: ContainerTransitionType.fadeThrough,
+            closedShape: CircleBorder(),
+            closedElevation: 0,
+            openElevation: 0,
+            closedColor: Theme.of(context).canvasColor,
+            openColor: Theme.of(context).canvasColor,
+            closedBuilder: (context, action) {
+              return IconButton(
+                icon: Icon(Icons.person),
+                onPressed: action,
               );
+            },
+            openBuilder: (context, action) {
+              return const AccountScreen();
             },
           ),
         ],
       ),
-      body: activePage,
+      body: PageTransitionSwitcher(
+        duration: const Duration(milliseconds: 700),
+        transitionBuilder: (
+            Widget child,
+            Animation<double> primaryAnimation,
+            Animation<double> secondaryAnimation,
+            ) {
+          return SharedAxisTransition(
+            child: child,
+            animation: primaryAnimation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.horizontal,
+          );
+        },
+        child: activePage,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,
