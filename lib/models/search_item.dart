@@ -10,7 +10,9 @@ class SearchItem {
 
 }
 
-Future<void> downloadCSVFromFirebaseStorage() async {
+Future<void> downloadCSVFromFirebaseStorage({bool isManual = false}) async {
+
+
   const String csvFileName = 'plants.csv'; // Name of the CSV file in Firebase Storage
 
   final Directory appDirectory = await getApplicationDocumentsDirectory();
@@ -18,16 +20,21 @@ Future<void> downloadCSVFromFirebaseStorage() async {
 
   final File localFile = File(localFilePath);
 
-  // Check if the file already exists and the last modification time
-  final FileStat fileStat = await localFile.stat();
-  final DateTime now = DateTime.now();
-  const Duration oneDay = Duration(days: 1);
-  final bool shouldDownload =
-      !localFile.existsSync() || now.difference(fileStat.modified) >= oneDay;
-
-  if (shouldDownload) {
+  if(isManual){
     final ref = FirebaseStorage.instance.ref(csvFileName);
     await ref.writeToFile(localFile);
+  }else{
+    // Check if the file already exists and the last modification time
+    final FileStat fileStat = await localFile.stat();
+    final DateTime now = DateTime.now();
+    const Duration oneDay = Duration(days: 1);
+    final bool shouldDownload =
+        !localFile.existsSync() || now.difference(fileStat.modified) >= oneDay;
+
+    if (shouldDownload) {
+      final ref = FirebaseStorage.instance.ref(csvFileName);
+      await ref.writeToFile(localFile);
+    }
   }
 }
 

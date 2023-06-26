@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:greencare/app_icons.dart';
 import 'package:greencare/screens/home.dart';
 import 'package:greencare/screens/splash.dart';
 import 'package:greencare/screens/search.dart';
+import 'package:greencare/screens/account.dart';
 
 class Tabs extends StatefulWidget {
   const Tabs({super.key});
@@ -40,7 +38,7 @@ class _TabsState extends State<Tabs> {
     switch (_selectedPageIndex) {
       case 0:
         //activePage = const HomeScreen();
-        activePage = const SearchScreen();
+        activePage = const HomeScreen();
         activePageTitle = AppLocalizations.of(context)!.home;
         break;
       case 1:
@@ -52,7 +50,7 @@ class _TabsState extends State<Tabs> {
         activePageTitle = AppLocalizations.of(context)!.plants;
         break;
       case 3:
-        activePage = const HomeScreen();
+        activePage = const SplashScreen();
         activePageTitle = AppLocalizations.of(context)!.shop;
         break;
     }
@@ -60,13 +58,16 @@ class _TabsState extends State<Tabs> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (){
-            FirebaseAuth.instance.signOut();
-            GoogleSignIn().disconnect();
-          }, icon: Icon(
-            Icons.exit_to_app,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AccountScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
